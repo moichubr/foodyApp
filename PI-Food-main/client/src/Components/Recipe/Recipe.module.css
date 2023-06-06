@@ -1,0 +1,52 @@
+.card {
+    display: inline-block;
+    flex-direction: row;
+    background-color: rgba(252, 250, 250, 0.479);
+    height: 400px;
+    width: 330px;
+    margin: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.img {
+    /* height: 100px;
+    width: 150px; */
+    margin: 20px;
+    justify-content: center;
+
+}
+
+.nombre {
+    color: rgb(122, 61, 25);
+    size: 12px;
+    height: fit-content;
+    text-align: center;
+    align-items: center;
+    text-shadow: 1px 1px 1px 1px whitesmoke;
+    font-family:sans-serif;
+    margin-bottom: 5px;
+
+
+}
+
+.apto{
+    color:rgb(78, 60, 60);
+    font-family: monospace;
+    margin-bottom: -15px
+}
+
+.diets {
+    color:rgb(78, 60, 60);
+    font-family: monospace;
+   
+    /* justify-content: space-between; */
+    
+}
+
+.infoContainer {
+    display: flex;
+    flex-direction: column;
+    margin-top: -5px;
+    
+}

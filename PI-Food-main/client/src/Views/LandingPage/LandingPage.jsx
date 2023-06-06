@@ -1,11 +1,20 @@
+import { Link } from "react-router-dom";
+import style from './LandingPage.module.css'
+
 const LandingPage = () => {
     return(
-        <>
-        <h1>Foody</h1>
-        <h3>Tu App de recetas</h3>
+        
+        <div className={style.container}>
 
-        <button>Ingresar</button>
-        </>
+        <h1 className={style.titulo}>Foody</h1>
+        <h3 className={style.subtitulo}>-bitácora de recetas-</h3>
+
+        <Link to='/Home'>
+        <button className={style.button}>Ingresar</button>
+        </Link>
+
+        </div>
+        
     )
 }
 

@@ -1,0 +1,35 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+    background-color: rgba(0, 0, 0, 0.315);
+    /* box-shadow: 0 0 3px 3px violet; */
+    height: 60px;
+    width: 100%;
+    box-sizing: border-box;
+    min-width:fit-content;
+    padding-bottom: 20px;
+    /* position: fixed */
+}
+
+.containerbutton {
+    display: flex;
+    flex-direction: row;
+    justify-self: center;
+    margin-right: 40px;
+}
+
+
+.button {
+    margin: 15px;
+    background-color: orangered;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    color: rgb(216, 213, 212);
+    size: 30px;
+    box-shadow: 0px 1px 0px 1px whitesmoke;
+    cursor: pointer;
+
+
+
+}
