@@ -3,8 +3,7 @@ const axios = require("axios");
 const URL = "https://api.spoonacular.com/recipes/";
 const { API_KEY } = process.env;
 const { Recipe } = require("../db.js");
-// const { Op } = require("sequelize");
-// const getAllRecipes = require('../routes/recipesRouter.js')
+
 
 const getRecipeByName = async (nombre, allRecipes) => {
   try {

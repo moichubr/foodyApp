@@ -9,7 +9,7 @@ const LandingPage = () => {
         <h1 className={style.titulo}>Foody</h1>
         <h3 className={style.subtitulo}>-bitácora de recetas-</h3>
 
-        <Link to='/Home'>
+        <Link to='/home'>
         <button className={style.button}>Ingresar</button>
         </Link>
 

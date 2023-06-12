@@ -10,10 +10,10 @@
 }
 
 .img {
-    /* height: 100px;
-    width: 150px; */
-    margin: 20px;
     justify-content: center;
+    width: 300px;
+    height: 200px;
+    cursor: pointer;
 
 }
 
