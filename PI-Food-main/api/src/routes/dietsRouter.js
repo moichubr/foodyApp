@@ -1,12 +1,12 @@
 const {Router} = require('express');
 const dietsRouter = Router();
 const getAllDiets = require('../controllers/getAllDiets')
-const getApiRecipes = require('./recipesRouter')
+// const getApiRecipes = require('./recipesRouter')
 
 
-dietsRouter.get('/', (req, res) => {
+dietsRouter.get('/', async (req, res) => {
     try {
-        const allDiets = getAllDiets(getApiRecipes);
+        const allDiets = await getAllDiets();
         res.status(200).json(allDiets)
     } catch (error) {
         res.status(400).json({error: error.message})

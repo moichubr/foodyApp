@@ -1,0 +1,97 @@
+label {
+    color: white;
+    display: block;
+}
+
+.error {
+    color: rgb(160, 47, 6);
+    display: block;
+
+}
+
+.container {
+    display: inline-block;
+    flex-direction: row;
+    background-color: rgba(252, 250, 250, 0.479);
+    width: 40%;
+    height: fit-content;
+    padding: 30px;
+    margin-top: 2px;
+}
+
+.titulo {
+    color: azure;
+    font-family: 'Courier New', Courier, monospace;
+    display:inline-block;
+    width: 40%;
+    background-color: orangered;
+    width: 100%;
+    height: 60px;
+    margin-top: -20px;
+    justify-content: center;
+    
+}
+
+textarea {
+    width: 60%;
+    height: 15dvh;
+    background-color: rgb(204, 193, 175);
+    border-radius: 10px;
+    border: none;
+    padding: 1px;
+}
+
+input {
+    width: 60%;
+    background-color: rgb(204, 193, 175);
+    border-radius: 10px;
+    border: none;
+    padding: 2px;
+    height: 24px;
+}
+
+.select {
+    width: 60%;
+    background-color: rgb(204, 193, 175);
+    border-radius: 10px;
+    padding: 2px;
+    height: 24px;
+
+}
+
+
+.contenedordietas {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}
+
+.divDietas {
+    background-color: black;
+    color:azure;
+    width: fit-content;
+    height: 20px;
+    margin: 10px 10px;
+    display: flex;
+    align-items: center;
+    padding: 2px;
+    
+}
+
+.closeBtn {
+    background-color: black;
+    border: none;
+    border-radius: 1px;
+    margin-left: 5px;
+    color: white   
+}
+
+.submit {
+    background-color: rgb(190, 55, 6);
+    border: none;
+    border-radius: 8px;
+    color: white;
+    width: 60%;
+    height: 30px;
+    margin-top: 10px;
+}

@@ -1,6 +1,6 @@
-import { GET_ALLRECIPES, GET_DETAILS, ABC_ORDER, HS_ORDER, DIET_FILTER, REGISTER_FILTER, GET_RECIPE_BYNAME } from "./actions";
+import { GET_ALLRECIPES, GET_DETAILS, ABC_ORDER, HS_ORDER, DIET_FILTER, REGISTER_FILTER, GET_RECIPE_BYNAME, CLEAN_DETAIL, GET_ALLDIETS, CREATE_RECIPE } from "./actions";
 
-const initialState = { allrecipes: [], getDetails: [], recipesAux: [] };
+const initialState = { allrecipes: [], getDetails: [], recipesAux: [], getAllDiets: [] };
 
 const rootReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -61,6 +61,23 @@ const rootReducer = (state = initialState, action) => {
             filtro = state.recipesAux.filter(el => !el.createdInDb)
         }
         return {...state, allrecipes: [...filtro]};
+
+    case CLEAN_DETAIL:
+      return {
+        ...state,
+        getDetails: []
+      };
+    
+    case GET_ALLDIETS:
+      return {
+        ...state,
+        getAllDiets: action.payload
+      };
+
+    case CREATE_RECIPE:
+      return {
+        ...state
+      }
 
     default:
       return state;

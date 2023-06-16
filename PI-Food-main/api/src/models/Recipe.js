@@ -15,10 +15,7 @@ module.exports = (sequelize) => {
     },
     imagen: {
       type: DataTypes.STRING,
-      allowNull: false,
-      validate:{
-        isURL: true,
-      }
+      allowNull: false //le borre que valide isURL 
     },
     resumen: {
       type: DataTypes.TEXT,

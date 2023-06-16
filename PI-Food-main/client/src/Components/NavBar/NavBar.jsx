@@ -17,8 +17,7 @@ const NavBar = () => {
   }
 
   function onSearch() {
-    dispatch(getRecipeByName(input));
-    setInput("");
+    dispatch(getRecipeByName(input))
   };
 
 

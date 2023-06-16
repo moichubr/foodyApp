@@ -11,11 +11,11 @@ const postNewRecipe = require("../controllers/postNewRecipe");
 
 //100 recetas de la api
 const getApiRecipes = async () => {
-  const apiAuxInfo = (
-    await axios.get("https://apimocha.com/n.s.recipes/allrecipes")
-  ).data;
-  // const apiURL = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
-  const apiInfo = apiAuxInfo.results.map((el) => {
+  // const apiAuxInfo = (
+  //   await axios.get("https://apimocha.com/n.s.recipes/allrecipes")
+  // ).data;
+  const apiURL = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
+  const apiInfo = apiURL.results.map((el) => {
     return {
       id: el.id,
       nombre: el.title,
@@ -110,9 +110,10 @@ recipesRouter.post("/", validate, async (req, res) => {
     resumen,
     healthScore,
     instrucciones,
-    createdInDb,
     diets,
+    createdInDb,
   } = req.body;
+
   try {
     const newRecipe = postNewRecipe(
       nombre,
@@ -120,9 +121,10 @@ recipesRouter.post("/", validate, async (req, res) => {
       resumen,
       healthScore,
       instrucciones,
+      diets,
       createdInDb,
-      diets
     );
+    // console.log('la receta', newRecipe)
     res.status(201).json(newRecipe);
   } catch (error) {
     res.status(400).json({ error: error.message });

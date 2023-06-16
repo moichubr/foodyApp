@@ -6,6 +6,9 @@ export const ABC_ORDER = "ABC_ORDER";
 export const HS_ORDER = "HS_ORDER";
 export const DIET_FILTER = "DIET_FILTER";
 export const REGISTER_FILTER = "REGISTER_FILTER";
+export const CLEAN_DETAIL = "CLEAN_DETAIL";
+export const GET_ALLDIETS = "GET_ALLDIETS";
+export const CREATE_RECIPE = "CREATE_RECIPE";
 
 export const getAllRecipes = () => {
   const endpoint = "http://localhost:3001/recipes/";
@@ -27,7 +30,7 @@ export const getDetailsById = (id) => {
   return async (dispatch) => {
     try {
       const response = (await axios.get(endpoint)).data;
-      console.log('lo que me responde:', response)
+      console.log("lo que me responde:", response);
       return dispatch({
         type: GET_DETAILS,
         payload: response,
@@ -80,3 +83,39 @@ export const registerFilter = (registro) => {
     payload: registro,
   };
 };
+
+export const cleanDetail = () => {
+  return {
+    type: CLEAN_DETAIL,
+  };
+};
+
+export const getAllDiets = () => {
+  const endpoint = "http://localhost:3001/diets/";
+  return async (dispatch) => {
+    try {
+      const response = (await axios.get(endpoint)).data;
+      return dispatch({
+        type: GET_ALLDIETS,
+        payload: response,
+      });
+    } catch (error) {
+      throw Error(error.message);
+    }
+  };
+};
+
+export const createRecipe = (form) => {
+  const endpoint = "http://localhost:3001/recipes/";
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(endpoint, form)
+      return dispatch({
+        type: CREATE_RECIPE,
+        payload: response,
+      })
+    } catch (error) {
+      throw Error(error.message)
+    }
+  }
+}
