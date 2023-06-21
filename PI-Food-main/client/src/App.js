@@ -4,7 +4,7 @@ import LandingPage from './Views/LandingPage/LandingPage';
 import Home from './Views/Home/Home'
 import Details from './Views/Details/Details'
 import About from './Views/About/About'
-// import ErrorPage from './Views/ErrorPage/ErrorPage'
+import ErrorPage from './Views/ErrorPage/ErrorPage'
 import NavBar from './Components/NavBar/NavBar'
 import Form from './Views/Form/Form';
 
@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="App">
-      {location.pathname !== "/" && (
+      {(location.pathname !== "/") && (
         <NavBar />
       )}
 
@@ -26,7 +26,7 @@ function App() {
         <Route path= '/details/:id' element= {<Details />} />
         <Route path= '/about' element={<About />} />
         <Route path= '/form' element={<Form />} />
-        {/* <Route path= '*' element= {<ErrorPage />} /> */}
+        <Route path= '*' element= {<ErrorPage />} />
       </Routes>
     </div>
   );

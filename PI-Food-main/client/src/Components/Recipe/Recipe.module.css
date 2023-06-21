@@ -9,6 +9,11 @@
     box-sizing: border-box;
 }
 
+.card:hover {
+    transform: scale(1.1)
+}
+
+
 .img {
     justify-content: center;
     width: 300px;

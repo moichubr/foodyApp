@@ -88,15 +88,15 @@ const Form = () => {
 
   return (
     <div>
-      <h2 className={style.titulo}>
-        Completa el formulario para crear tu receta
-      </h2>
+      {/* <h2 className={style.titulo}>
+        Creá tu receta:
+      </h2> */}
 
       <form onSubmit={(event)=>submitHandler(event)}>
         <div className={style.container}>
-          <label>Nombre: </label>
+          <label>Name: </label>
           <input
-            placeholder="Ponle un título"
+            placeholder="Recipe title"
             type="text"
             name="nombre"
             value={input.nombre}
@@ -108,11 +108,11 @@ const Form = () => {
             </span>
           ) : null}
 
-          <label>Imagen: </label>
+          <label>Image: </label>
           <input
             type="text"
             name="imagen"
-            // accept="image/*"
+            placeholder="Copy-paste the img URL"
             value={input.imagen}
             onChange={(event)=>handleChange(event)}
           />
@@ -122,9 +122,9 @@ const Form = () => {
             </span>
           ) : null}
 
-          <label>Resumen del plato: </label>
+          <label>Summary: </label>
           <textarea
-            placeholder="Cuenta de qué se trata"
+            placeholder="What's the recipe about?"
             type="textarea"
             name="resumen"
             value={input.resumen}
@@ -138,7 +138,7 @@ const Form = () => {
 
           <label>HealthScore: </label>
           <input
-            placeholder="0= poco saludable || 100= muy saludable"
+            placeholder="unhealthy 0 | 100 healthier"
             type="number"
             name="healthScore"
             value={input.healthScore}
@@ -150,9 +150,9 @@ const Form = () => {
             </span>
           ) : null}
 
-          <label>Paso a paso: </label>
+          <label>Step by step: </label>
           <textarea
-            placeholder="Cuenta cómo lo haces"
+            placeholder="How you do it?"
             type="textarea"
             name="instrucciones"
             value={input.instrucciones}
@@ -164,7 +164,7 @@ const Form = () => {
             </span>
           ) : null}
 
-          <label>Dieta/s a la/s que pertenece</label>
+          <label>Belongs to diets:</label>
           <select className={style.select} onChange={(event)=>handleSelect(event)}>
             {dietsState?.map((diet) => {
               return (
@@ -199,7 +199,7 @@ const Form = () => {
             })}
           </div>
           <button className={style.submit} type="submit">
-            CREAR RECETA
+            CREATE RECIPE
           </button>
         </div>
       </form>

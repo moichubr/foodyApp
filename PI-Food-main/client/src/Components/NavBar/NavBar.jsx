@@ -17,7 +17,11 @@ const NavBar = () => {
   }
 
   function onSearch() {
-    dispatch(getRecipeByName(input))
+    if(!input){
+      alert('Try writing something.')
+    } else{
+      dispatch(getRecipeByName(input))
+    }
   };
 
 
@@ -27,7 +31,7 @@ const NavBar = () => {
 
       <div className={style.appInfo}>
       <p className={style.ptitulo}>FOODY APP</p>
-      <p className={style.psubtitulo}>-bitácora de recetas-</p>
+      <p className={style.psubtitulo}>-recipes binnacle-</p>
       </div>
 
 
@@ -37,7 +41,7 @@ const NavBar = () => {
         </Link>
 
       <Link to="/form">
-        <p className={style.link}>CREA TU RECETA</p>
+        <p className={style.link}>CREATE YOUR RECIPE</p>
         </Link>
 
       <Link to="/about">
@@ -46,8 +50,8 @@ const NavBar = () => {
       </div>
 
       <div className={style.inputcont}>
-        <input className={style.input} placeholder='Nombre de la receta' type='search' onChange={inputHandler}></input>
-        <button className={style.buttonSearch} onClick={onSearch}>BUSCAR</button>
+        <input className={style.input} placeholder='Recipe name or keyword' type='search' onChange={inputHandler}></input>
+        <button className={style.buttonSearch} onClick={onSearch}>SEARCH</button>
       </div>
 
     </div>

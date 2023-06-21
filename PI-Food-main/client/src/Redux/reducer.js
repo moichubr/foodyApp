@@ -38,6 +38,7 @@ const rootReducer = (state = initialState, action) => {
 
     case HS_ORDER:
         let orderByHS;
+        //revisar el orden del ordenamiento!
 
         if(action.payload === "mas") {
             orderByHS = state.allrecipes.sort((a, b) =>

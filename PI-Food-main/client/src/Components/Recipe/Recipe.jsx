@@ -11,12 +11,11 @@ const Recipe = ({id, nombre, imagen, diets}) => {
     }
     return (
         <div className={style.card}>
-            
             <img className={style.img} src={imagen} alt='img not found' onClick={changeNavigate}/>
             
             <div className={style.infoContainer}>
             <h3 className={style.nombre}>{nombre}</h3>
-            <h4 className={style.apto}>Dietas incluídas:</h4>
+            <h4 className={style.apto}>Diets which it belongs:</h4>
             <h4 className={style.diets}>{diets}</h4>
             </div>
         </div>

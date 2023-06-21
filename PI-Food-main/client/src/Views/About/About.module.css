@@ -1,3 +1,33 @@
-.about {
+.titulo {
+    color: orangered;
+    font-family: 'Trebuchet MS', sans-serif;
+    text-decoration: solid;
+}
+
+.subtit {
+    font-family: 'Courier New', Courier, monospace;
+    color: white; 
+    margin-top: -20px;
+}
+
+.container {
+    display: inline-block;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.26);
+    width: 40%;
+    margin-top: 15px;
+    padding: 0 15px 
+}
+
+.textCont {
     color: white;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.26);
+    display: block;
+    flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 15px;
+    font-size:small;
+    
 }

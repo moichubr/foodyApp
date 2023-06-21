@@ -64,8 +64,9 @@ const Home = () => {
   return (
     <div>
       <div className={style.optionsContainer}>
-          <span>Tipo de dieta: </span>
+          <span>Kind of diet: </span>
           <select className={style.select} onChange={filterbyDiet}>
+            <option value="" disabled selected>Select your option</option>
             <option value="gluten free">Gluten Free</option>
             <option value="dairy free">Dairy Free</option>
             <option value="lacto ovo vegetarian">Lacto Ovo Vegetarian</option>
@@ -78,22 +79,25 @@ const Home = () => {
             <option value="fodmap friendly">Fodmap Friendly</option>
           </select>
         
-          <span>Buscar en: </span>
+          <span>Search on: </span>
           <select className={style.select} onChange={filterbyRegister}>
+            <option value="" disabled selected>Select your option</option>
             <option value="DB">My Recipes</option>
             <option value="API">Api Recipes</option>
           </select>
 
-          <span>Orden alfabético</span>
+          <span>Alphabetic order </span>
           <select className={style.select} onChange={alphabeticOrder}>
+            <option value="" disabled selected>Select your option</option>
           <option value="asc">A-Z</option>
           <option value="desc">Z-A</option>
           </select>
         
-          <span>HealthScore</span>
+          <span>HealthScore </span>
           <select className={style.select} onChange={orderbyHS}>
-            <option value="mas">Mas Saludable</option>
-            <option value="menos">Menos Saludable</option>
+            <option value="" disabled selected>Select your option</option>
+            <option value="mas">Healthier</option> 
+            <option value="menos">Unhealthy</option>
           </select>
 
           <button className={style.resetbutton} onClick={handleReset}>RESET
@@ -114,9 +118,9 @@ const Home = () => {
     </div>
 
     <div>
-      <button className={style.button} onClick={prevHandler}>Anterior</button>
+      <button className={style.button} onClick={prevHandler}>Previous</button>
       <span>{currentPage}</span>
-      <button className={style.button} onClick={nextHandler}>Siguiente</button>
+      <button className={style.button} onClick={nextHandler}>Next</button>
     </div>
     
     </div>
