@@ -42,10 +42,10 @@ const rootReducer = (state = initialState, action) => {
 
         if(action.payload === "mas") {
             orderByHS = state.allrecipes.sort((a, b) =>
-            a.healthScore > b.healthScore ? 1 : -1);
+            a.healthScore < b.healthScore ? 1 : -1);
         }else {
             orderByHS = state.allrecipes.sort((a, b) => 
-            a.healthScore < b.healthScore ? 1 : -1);
+            a.healthScore > b.healthScore ? 1 : -1);
         }
         return { ...state, allrecipes: [...orderByHS]};
         

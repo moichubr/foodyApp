@@ -81,7 +81,7 @@ recipesRouter.get("/:id", async (req, res) => {
 
 recipesRouter.get("/", async (req, res) => {
   const { nombre } = req.query;
-  console.log(nombre);
+  // console.log(nombre);
   const allRecipes = await getAllRecipes();
   try {
     if (nombre) {

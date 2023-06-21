@@ -58,17 +58,10 @@
     color: white;
     width: 80px;
     height: 30px;
+    cursor: pointer;
 }
 
-
-/* .h5 {
-    float:right;
-    
+.h5 {
+    margin-left: 10px
 }
-
-.h5r {
-    float: left;
-    margin-right: 10px;
-
-} */
 

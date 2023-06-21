@@ -35,14 +35,14 @@ const Details = () => {
 
 
     <div className={style.extraInfo}>
-      <div>
-    <h5 className={style.h5}>HealthScore: </h5>
-    <h5 className={style.h5}>{recipe.healthScore}</h5>
+      <div className={style.h5}>
+    <h5>HealthScore: </h5>
+    <h5>{recipe.healthScore}</h5>
       </div>
     
-    <div>
-    <h5 className={style.h5r}>Suitable diets:</h5>
-    <h5 className={style.h5r}>{recipe.diets}</h5>
+    <div className={style.h5}>
+    <h5>Suitable diets:</h5>
+    <h5>{recipe.diets}</h5>
     </div>
    
     </div>

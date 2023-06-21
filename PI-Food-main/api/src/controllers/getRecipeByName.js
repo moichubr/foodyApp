@@ -6,13 +6,10 @@ const { Recipe } = require("../db.js");
 
 
 const getRecipeByName = async (nombre, allRecipes) => {
-  try {
     const recipeName = await allRecipes.filter(el => el.nombre.toLowerCase().includes(nombre.toLowerCase()))
     if(recipeName.length) return recipeName 
     else throw Error('No hay recetas con ese nombre')
-} catch (error) {
-    return error.message;
-}
+
 };
 
 module.exports = getRecipeByName;
