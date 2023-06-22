@@ -21,7 +21,7 @@ const About = () => {
 
         <p>This App uses technologies as:</p>
         <p>React.js, Redux.js, Express, Sequelize, PostgreSQL, CSS, HTML5</p>
-        
+
         <hr></hr>
 
         <p>

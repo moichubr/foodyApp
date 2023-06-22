@@ -19,9 +19,8 @@ const NavBar = () => {
       alert("Try writing something.");
       return;
     }
-    dispatch(getRecipeByName(input))
-    .catch((error) => {
-      alert(`La búsqueda no arrojo resultados. ${error}`);
+    dispatch(getRecipeByName(input)).catch((error) => {
+      alert(`Search did not get any result. ${error}`);
     });
   };
 

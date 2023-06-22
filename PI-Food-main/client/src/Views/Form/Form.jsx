@@ -1,12 +1,10 @@
-
 import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { getAllDiets, createRecipe } from "../../Redux/actions";
 import validate from "./validate";
 import style from "./Form.module.css";
-
 
 const Form = () => {
   const dispatch = useDispatch();
@@ -68,13 +66,13 @@ const Form = () => {
   }
 
   function submitHandler(event) {
-    if(Object.keys(errors).length !== 0){
+    if (Object.keys(errors).length !== 0) {
       event.preventDefault();
-      alert('Verifica la información ingresada.')
-    } else{
+      alert("Verify the provided information.");
+    } else {
       event.preventDefault();
       dispatch(createRecipe(input));
-      alert("Has creado tu receta!");
+      alert("The recipe has been created!");
       setInput({
         nombre: "",
         imagen: "",
@@ -84,16 +82,12 @@ const Form = () => {
         diets: [],
       });
     }
-    navigate('/home');
+    navigate("/home");
   }
 
   return (
     <div>
-      {/* <h2 className={style.titulo}>
-        Creá tu receta:
-      </h2> */}
-
-      <form onSubmit={(event)=>submitHandler(event)}>
+        <form onSubmit={(event) => submitHandler(event)}>
         <div className={style.container}>
           <label>Name: </label>
           <input
@@ -101,7 +95,7 @@ const Form = () => {
             type="text"
             name="nombre"
             value={input.nombre}
-            onChange={(event)=>handleChange(event)}
+            onChange={(event) => handleChange(event)}
           />
           {errors.nombre ? (
             <span className={style.error}>
@@ -115,7 +109,7 @@ const Form = () => {
             name="imagen"
             placeholder="Copy-paste the img URL"
             value={input.imagen}
-            onChange={(event)=>handleChange(event)}
+            onChange={(event) => handleChange(event)}
           />
           {errors.imagen ? (
             <span className={style.error}>
@@ -129,7 +123,7 @@ const Form = () => {
             type="textarea"
             name="resumen"
             value={input.resumen}
-            onChange={(event)=>handleChange(event)}
+            onChange={(event) => handleChange(event)}
           />
           {errors.resumen ? (
             <span className={style.error}>
@@ -139,11 +133,12 @@ const Form = () => {
 
           <label>HealthScore: </label>
           <input
-            placeholder="unhealthy 0 | 100 healthier"
-            type="number"
+            type="range"
+            min="0"
+            max="100"
             name="healthScore"
             value={input.healthScore}
-            onChange={(event)=>handleChange(event)}
+            onChange={(event) => handleChange(event)}
           />
           {errors.healthScore ? (
             <span className={style.error}>
@@ -157,7 +152,7 @@ const Form = () => {
             type="textarea"
             name="instrucciones"
             value={input.instrucciones}
-            onChange={(event)=>handleChange(event)}
+            onChange={(event) => handleChange(event)}
           />
           {errors.instrucciones ? (
             <span className={style.error}>
@@ -166,7 +161,10 @@ const Form = () => {
           ) : null}
 
           <label>Belongs to diets:</label>
-          <select className={style.select} onChange={(event)=>handleSelect(event)}>
+          <select
+            className={style.select}
+            onChange={(event) => handleSelect(event)}
+          >
             {dietsState?.map((diet) => {
               return (
                 <option key={diet.nombre} value={diet.nombre}>
@@ -185,16 +183,17 @@ const Form = () => {
             {input.diets?.map((el) => {
               return (
                 <div className={style.contenedordietas}>
-                <div className={style.divDietas} key={el}>
-                  <p>{el}</p>
-                  <button className={style.closeBtn}
-                    onClick={() => {
-                      handleDelete(el);
-                    }}
-                  >
-                    x
-                  </button>
-                </div>
+                  <div className={style.divDietas} key={el}>
+                    <p>{el}</p>
+                    <button
+                      className={style.closeBtn}
+                      onClick={() => {
+                        handleDelete(el);
+                      }}
+                    >
+                      x
+                    </button>
+                  </div>
                 </div>
               );
             })}
