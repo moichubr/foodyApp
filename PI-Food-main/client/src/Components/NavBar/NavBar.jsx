@@ -49,7 +49,7 @@ const NavBar = () => {
         <div className={style.inputcont}>
           <input
             className={style.input}
-            placeholder="Recipe name or keyword"
+            placeholder="Recipe name/keyword"
             type="search"
             onChange={inputHandler}
           ></input>

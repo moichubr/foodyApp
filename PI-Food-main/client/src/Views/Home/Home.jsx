@@ -2,6 +2,7 @@ import React from "react";
 import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+// import { useLocation } from "react-router-dom";
 import {
   getAllRecipes,
   abcOrder,
@@ -10,10 +11,14 @@ import {
   registerFilter,
 } from "../../Redux/actions";
 import Recipe from "../../Components/Recipe/Recipe";
+import Loading from "../../Components/Loading/Loading";
 
 const Home = () => {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.allrecipes);
+  const recipesLoaded = useSelector((state) => state.cacheRecipes);
+  const selectedDiet = useSelector((state) => state.dietSelected);
+
 
   //----------PARA EL PAGINADO--------
   const [currentPage, setCurrentPage] = useState(1);
@@ -23,19 +28,22 @@ const Home = () => {
   const currentRecipes = [...allRecipes].slice(
     indexOfFirstRecipe,
     indexOfLastRecipe
-  );
+    );
 
-  const [isLoading, setIsLoading] = useState(true);
+    // const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
+    // useEffect(() => {
+    //   if(recipesLoaded || selectedDiet){
+    //     return
+    //   }
+    //   else {
+    //     setTimeout(() => {
+    //       setIsLoading(false);
+    //     }, 3000)
+    //   }}, [recipesLoaded, selectedDiet])
 
-  useEffect(() => {
-    dispatch(getAllRecipes());
-  }, [dispatch]);
+
+  
 
   //________________PAGINADO______________
 
@@ -47,12 +55,13 @@ const Home = () => {
     if (currentPage === lastPage) return;
     setCurrentPage(nextPage);
   };
-
+  
   const prevHandler = () => {
     const prevPage = currentPage - 1;
     if (prevPage === 0) return;
     setCurrentPage(prevPage);
   };
+  
 
   //------------ORDERS & FILTERS---------
 
@@ -77,12 +86,31 @@ const Home = () => {
     dispatch(getAllRecipes());
   }
 
+
+  useEffect(() => {
+    if(recipesLoaded){
+      return;
+    }
+
+    if(selectedDiet){
+      dietFilter(selectedDiet);
+    }
+    else{
+      dispatch(getAllRecipes());
+    }
+    }, [recipesLoaded, dispatch, selectedDiet]);
+
+    if(!recipesLoaded){
+      return <Loading />
+    }
+
+
   return (
     <div>
       <div className={style.optionsContainer}>
         <span>Kind of diet: </span>
         <select className={style.select} onChange={filterbyDiet}>
-          <option value="" disabled selected>
+          <option value="">
             Select your option
           </option>
           <option value="gluten free">Gluten Free</option>
@@ -99,7 +127,7 @@ const Home = () => {
 
         <span>Search on: </span>
         <select className={style.select} onChange={filterbyRegister}>
-          <option value="" disabled selected>
+          <option value="">
             Select your option
           </option>
           <option value="DB">My Recipes</option>
@@ -108,7 +136,7 @@ const Home = () => {
 
         <span>Alphabetic order </span>
         <select className={style.select} onChange={alphabeticOrder}>
-          <option value="" disabled selected>
+          <option value="">
             Select your option
           </option>
           <option value="asc">A-Z</option>
@@ -117,7 +145,7 @@ const Home = () => {
 
         <span>HealthScore </span>
         <select className={style.select} onChange={orderbyHS}>
-          <option value="" disabled selected>
+          <option value="">
             Select your option
           </option>
           <option value="mas">Healthier</option>
@@ -140,7 +168,6 @@ const Home = () => {
         ))}
       </div>
 
-      {isLoading && <div className={style.spinner}> </div>}
 
       <div>
         <button className={style.button} onClick={prevHandler}>

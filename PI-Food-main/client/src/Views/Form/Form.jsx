@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -10,13 +9,12 @@ const Form = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const dietsState = useSelector((state) => state.getAllDiets);
-  // console.log("el estado", dietsState);
 
   const [input, setInput] = useState({
     nombre: "",
     imagen: "",
     resumen: "",
-    healthScore: 0,
+    healthScore: 50,
     instrucciones: "",
     diets: [],
   });
@@ -26,6 +24,39 @@ const Form = () => {
   useEffect(() => {
     dispatch(getAllDiets());
   }, [dispatch]);
+
+  //cuando se monta el form, obtiene y guarda los inputs
+  useEffect(() => {
+    let formValues = localStorage.getItem("formValues");
+    if (formValues) {
+      setInput(JSON.parse(formValues));
+    }
+  }, []);
+
+  //----maneja la imagen que se quiere cargar
+  const handleImage = (event) => {
+    const file = event.target.files[0]; // obtiene el archivo seleccionado por el usuario
+
+    if (file) {
+      const reader = new FileReader(); //instancia para leer archivos
+
+      reader.onload = (e) => {
+        //cuando se carga,
+        setInput({ ...input, imagen: e.target.result });
+      };
+
+      reader.readAsDataURL(file); //transforma a URL el codigo de la imagen
+    }
+  };
+
+  //maneja el nro del input range que se muestra sobre la barra
+  function handleRange(event) {
+    const currentRange = parseInt(event.target.value);
+    setInput({
+      ...input,
+      healthScore: currentRange,
+    });
+  }
 
   function handleChange(event) {
     event.preventDefault();
@@ -43,19 +74,13 @@ const Form = () => {
     );
   }
 
+  //----Handle del select Diets
   function handleSelect(event) {
     event.preventDefault();
     setInput({
       ...input,
       diets: [...input.diets, event.target.value],
     });
-
-    setErrors(
-      validate({
-        ...input,
-        [event.target.name]: event.target.value,
-      })
-    );
   }
 
   function handleDelete(el) {
@@ -65,14 +90,37 @@ const Form = () => {
     });
   }
 
+  //-----fx que hace el Submit del form----
   function submitHandler(event) {
+    event.preventDefault();
     if (Object.keys(errors).length !== 0) {
       event.preventDefault();
       alert("Verify the provided information.");
+      return;
+    } else if (input.diets.length === 0) {
+      const userConfirm = window.confirm(
+        "You did not select any diet. You want to continue anyway?"
+      ); //boolean
+      if (userConfirm) {
+        dispatch(createRecipe(input));
+        alert("The recipe has been created!");
+        localStorage.removeItem("formValues");
+        setInput({
+          nombre: "",
+          imagen: "",
+          resumen: "",
+          healthScore: 0,
+          instrucciones: "",
+          diets: [],
+        });
+      } else {
+        localStorage.setItem("formValues", JSON.stringify(input)); //restablece el form con lo q tiene el estado input
+        window.location.href = "/form"; //redirige al form
+      }
     } else {
-      event.preventDefault();
       dispatch(createRecipe(input));
       alert("The recipe has been created!");
+      localStorage.removeItem("formValues");
       setInput({
         nombre: "",
         imagen: "",
@@ -87,7 +135,8 @@ const Form = () => {
 
   return (
     <div>
-        <form onSubmit={(event) => submitHandler(event)}>
+      <h1 className={style.titulo}>GET INSPIRED, CHEF!</h1>
+      <form onSubmit={(event) => submitHandler(event)}>
         <div className={style.container}>
           <label>Name: </label>
           <input
@@ -104,12 +153,22 @@ const Form = () => {
           ) : null}
 
           <label>Image: </label>
+          <div className={style.preview}>
+            {input.imagen && (
+              <img
+                className={style.img}
+                src={input.imagen}
+                alt="Imagen seleccionada"
+              />
+            )}
+          </div>
           <input
-            type="text"
+            type="file"
             name="imagen"
-            placeholder="Copy-paste the img URL"
-            value={input.imagen}
-            onChange={(event) => handleChange(event)}
+            accept="image/*"
+            id="photo"
+            // value={input.imagen} NO FUNCIONA PARA EL TYPE FILE
+            onChange={(event) => handleImage(event)}
           />
           {errors.imagen ? (
             <span className={style.error}>
@@ -132,19 +191,17 @@ const Form = () => {
           ) : null}
 
           <label>HealthScore: </label>
+          <span className={style.healthScore}>
+            <b>{input.healthScore}</b>
+          </span>
           <input
             type="range"
             min="0"
             max="100"
             name="healthScore"
             value={input.healthScore}
-            onChange={(event) => handleChange(event)}
+            onChange={(event) => handleRange(event)}
           />
-          {errors.healthScore ? (
-            <span className={style.error}>
-              <b>{errors.healthScore}</b>
-            </span>
-          ) : null}
 
           <label>Step by step: </label>
           <textarea

@@ -1,15 +1,21 @@
 import { useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Details.module.css";
 import { getDetailsById, cleanDetail } from "../../Redux/actions";
+import { useNavigate } from "react-router-dom";
+import Loading from "../../Components/Loading/Loading";
 
 const Details = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   // console.log('EL ID', id)
   const dispatch = useDispatch();
   const recipe = useSelector((state) => state.getDetails);
+  const navigate = useNavigate();
+
+  const handleBackClick = () => {
+    navigate(-1);
+  };
 
   useEffect(() => {
     dispatch(getDetailsById(id));
@@ -18,9 +24,8 @@ const Details = () => {
     };
   }, [dispatch, id]);
 
-  function back(event) {
-    event.preventDefault();
-    navigate("/home");
+  if (recipe.length === 0) {
+    return <Loading />;
   }
 
   return (
@@ -46,11 +51,15 @@ const Details = () => {
         <h3 className={style.h3}>Summary</h3>
         <h4 dangerouslySetInnerHTML={{ __html: recipe.resumen }}></h4>
 
-        <h3 className={style.h3}>Step by step</h3>
-        <h4 dangerouslySetInnerHTML={{ __html: recipe.instrucciones }}></h4>
+        {recipe.instrucciones ? (
+          <>
+            <h3 className={style.h3}>Step by step</h3>
+            <h4 dangerouslySetInnerHTML={{ __html: recipe.instrucciones }}></h4>
+          </>
+        ) : null}
       </div>
 
-      <button className={style.back} onClick={back}>
+      <button className={style.back} onClick={handleBackClick}>
         BACK
       </button>
     </div>

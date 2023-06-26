@@ -69,7 +69,6 @@ const getAllRecipes = async () => {
 
 recipesRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
-  // const apiRecipes = await getApiRecipes()
   // console.log('el id', id)
   try {
     const recipe = await getRecipeById(id, getDBrecipes);

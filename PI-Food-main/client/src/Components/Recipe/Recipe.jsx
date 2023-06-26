@@ -2,13 +2,14 @@ import React from "react";
 import style from "./Recipe.module.css";
 import { useNavigate } from "react-router-dom";
 
-const Recipe = ({ id, nombre, imagen, diets }) => {
+const Recipe = ({ id, nombre, imagen, diets}) => {
   const navigate = useNavigate();
   // console.log(diets)
 
   function changeNavigate() {
     navigate(`/details/${id}`);
   }
+
   return (
     <div className={style.card}>
       <img
