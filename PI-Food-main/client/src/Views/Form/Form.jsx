@@ -38,14 +38,13 @@ const Form = () => {
     const file = event.target.files[0]; // obtiene el archivo seleccionado por el usuario
 
     if (file) {
-      const reader = new FileReader(); //instancia para leer archivos
+      const reader = new FileReader(); //instancia para leer archivos y acceder a su contenido
 
-      reader.onload = (e) => {
-        //cuando se carga,
+      reader.onload = (e) => { //si se lee correctamente
         setInput({ ...input, imagen: e.target.result });
       };
 
-      reader.readAsDataURL(file); //transforma a URL el codigo de la imagen
+      reader.readAsDataURL(file); //transforma a URL de base64 el codigo de la imagen
     }
   };
 
