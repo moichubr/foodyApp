@@ -13,17 +13,3 @@ const getRecipeByName = async (nombre, allRecipes) => {
 };
 
 module.exports = getRecipeByName;
-
-// if (name) {
-//   const recipeDB = await Recipe.findAll({
-//     where: { nombre: { [Op.iLike]: `%${name}%` } },
-//   });
-
-//   if (recipeDB) {
-//     return recipeDB;
-//   } else {
-//     const recipesApi =
-//       await axios.get(
-//         `${URL}/complexSearch?apiKey=${API_KEY}&titleMatch=${name}`
-//       )
-//     return recipesApi;

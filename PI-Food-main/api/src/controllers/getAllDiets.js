@@ -16,7 +16,7 @@ const getAllDiets = async () => {
   
       //de cada receta, saco el valor de la propiedad diets
       const allDiets = apiInfo.results.map((receta) =>
-        Object.values(receta.diets)
+        Object.values(receta.diets) //array de arrays xq hay recetas q tienen +1 dieta
       );
       // console.log(allDiets)
   

@@ -30,7 +30,7 @@ const getRecipeById = async (id, getDBrecipes ) => {
       return recipeApi;
     }
   } catch (error) {
-    console.log(error.message);
+    // console.log(error.message);
     return "El id no corresponde a ninguna fuente de información.";
   }
 };

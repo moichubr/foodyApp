@@ -15,8 +15,9 @@ const initialState = {
   allrecipes: [],
   getDetails: [],
   recipesAux: [],
+  recipeFilter: [],
   getAllDiets: [],
-  cacheRecipes: false,
+  recipesLoaded: false,
   dietSelected: "",
 };
 
@@ -27,7 +28,8 @@ const rootReducer = (state = initialState, action) => {
         ...state,
         allrecipes: action.payload,
         recipesAux: action.payload,
-        cacheRecipes: true,
+        recipeFilter: action.payload,
+        recipesLoaded: true,
       };
 
     case GET_DETAILS:
@@ -55,7 +57,6 @@ const rootReducer = (state = initialState, action) => {
 
     case HS_ORDER:
       let orderByHS;
-      //revisar el orden del ordenamiento!
 
       if (action.payload === "mas") {
         orderByHS = state.allrecipes.sort((a, b) =>
@@ -69,24 +70,31 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, allrecipes: [...orderByHS] };
 
     case DIET_FILTER:
-      let filteredDiets = state.recipesAux.filter((recipe) =>
+
+      let filteredDiets = state.recipeFilter.filter((recipe) =>
         recipe.diets.includes(action.payload)
       );
       return {
         ...state,
         allrecipes: [...filteredDiets],
+        recipesAux: [...filteredDiets],
         dietSelected: action.payload,
       };
 
     case REGISTER_FILTER:
       let filtro;
+      if(action.payload === "all"){
+        filtro= state.recipesAux
+        return {...state, allrecipes: [...filtro]}
+      }
 
       if (action.payload === "DB") {
         filtro = state.recipesAux.filter((el) => el.createdInDb);
-      } else {
+      } else{
         filtro = state.recipesAux.filter((el) => !el.createdInDb);
-      }
-      return { ...state, allrecipes: [...filtro] };
+      } 
+
+      return { ...state, allrecipes: [...filtro], recipeFilter: [...filtro] };
 
     case CLEAN_DETAIL:
       return {

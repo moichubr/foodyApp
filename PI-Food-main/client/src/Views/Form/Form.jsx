@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { getAllDiets, createRecipe } from "../../Redux/actions";
+import { getAllDiets, createRecipe, getAllRecipes } from "../../Redux/actions";
 import validate from "./validate";
 import style from "./Form.module.css";
 
@@ -25,7 +25,7 @@ const Form = () => {
     dispatch(getAllDiets());
   }, [dispatch]);
 
-  //cuando se monta el form, obtiene y guarda los inputs
+  // cuando se monta el form, obtiene y guarda los input
   useEffect(() => {
     let formValues = localStorage.getItem("formValues");
     if (formValues) {
@@ -130,6 +130,7 @@ const Form = () => {
         diets: [],
       });
     }
+    dispatch(getAllRecipes());
     navigate("/home");
   }
 
@@ -154,13 +155,13 @@ const Form = () => {
 
           <label>Image: </label>
           <div className={style.preview}>
-            {input.imagen && (
+            {input.imagen ? (
               <img
                 className={style.img}
                 src={input.imagen}
                 alt="Imagen seleccionada"
               />
-            )}
+            ) : null}
           </div>
           <input
             type="file"

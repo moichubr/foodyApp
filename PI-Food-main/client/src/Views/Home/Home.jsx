@@ -2,7 +2,6 @@ import React from "react";
 import style from "./Home.module.css";
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-// import { useLocation } from "react-router-dom";
 import {
   getAllRecipes,
   abcOrder,
@@ -16,7 +15,7 @@ import Loading from "../../Components/Loading/Loading";
 const Home = () => {
   const dispatch = useDispatch();
   const allRecipes = useSelector((state) => state.allrecipes);
-  const recipesLoaded = useSelector((state) => state.cacheRecipes);
+  const recipesLoaded = useSelector((state) => state.recipesLoaded);
   const selectedDiet = useSelector((state) => state.dietSelected);
 
 
@@ -30,20 +29,6 @@ const Home = () => {
     indexOfLastRecipe
     );
 
-    // const [isLoading, setIsLoading] = useState(true);
-
-    // useEffect(() => {
-    //   if(recipesLoaded || selectedDiet){
-    //     return
-    //   }
-    //   else {
-    //     setTimeout(() => {
-    //       setIsLoading(false);
-    //     }, 3000)
-    //   }}, [recipesLoaded, selectedDiet])
-
-
-  
 
   //________________PAGINADO______________
 
@@ -111,7 +96,7 @@ const Home = () => {
         <span>Kind of diet: </span>
         <select className={style.select} onChange={filterbyDiet}>
           <option value="">
-            Select your option
+            All
           </option>
           <option value="gluten free">Gluten Free</option>
           <option value="dairy free">Dairy Free</option>
@@ -127,8 +112,8 @@ const Home = () => {
 
         <span>Search on: </span>
         <select className={style.select} onChange={filterbyRegister}>
-          <option value="">
-            Select your option
+          <option value="all">
+            All 
           </option>
           <option value="DB">My Recipes</option>
           <option value="API">Api Recipes</option>

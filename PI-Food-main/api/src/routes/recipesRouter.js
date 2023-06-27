@@ -11,11 +11,11 @@ const postNewRecipe = require("../controllers/postNewRecipe");
 
 //100 recetas de la api
 const getApiRecipes = async () => {
-  // const apiAuxInfo = (
-  //   await axios.get("https://apimocha.com/n.s.recipes/allrecipes")
-  // ).data;
-  const apiURL = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
-  const apiInfo = apiURL.results.map((el) => {
+  const apiAuxInfo = (
+    await axios.get("https://apimocha.com/n.s.recipes/allrecipes")
+  ).data;
+  // const apiURL = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
+  const apiInfo = apiAuxInfo.results.map((el) => {
     return {
       id: el.id,
       nombre: el.title,
