@@ -2,30 +2,30 @@ const validate = (input) => {
   let errors = {};
 
   if (!input.nombre) {
-    errors.nombre = "La receta debe tener un nombre";
+    errors.nombre = "Name/Title required.";
   } else if (input.nombre.length < 3) {
-    errors.nombre = "Debe tener 3 o mas letras.";
+    errors.nombre = "Should have 3 letters, at least.";
   } else if (input.nombre.length > 50) {
-    errors.nombre = "El nombre es muy largo.";
+    errors.nombre = "Name/Title too long.";
   }
  
 
   if (!input.resumen) {
-    errors.resumen = "Campo requerido.";
+    errors.resumen = "Required.";
   } else if (input.resumen.length < 20) {
-    errors.resumen = "Escribe un poco mas.";
+    errors.resumen = "Write a little more.";
   } 
  
 
   if (!input.instrucciones) {
-    errors.instrucciones = "Campo requerido.";
+    errors.instrucciones = "Required.";
   } else if (input.instrucciones.length < 30) {
-    errors.instrucciones = "Escribe un poco mas.";
+    errors.instrucciones = "Write a little more.";
   } 
  
 
   if (!input.imagen) {
-    errors.imagen = "Debes cargar una imagen.";
+    errors.imagen = "Choose an image.";
   }
  
   

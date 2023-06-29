@@ -101,7 +101,9 @@ const Form = () => {
         "You did not select any diet. You want to continue anyway?"
       ); //boolean
       if (userConfirm) {
-        dispatch(createRecipe(input));
+        dispatch(createRecipe(input)).catch((error) => {
+          alert('Oops! Something went wrong. Please, try again.')
+        });
         alert("The recipe has been created!");
         localStorage.removeItem("formValues");
         setInput({
@@ -117,7 +119,9 @@ const Form = () => {
         window.location.href = "/form"; //redirige al form
       }
     } else {
-      dispatch(createRecipe(input));
+      dispatch(createRecipe(input)).catch((error) => {
+        alert('Oops! Something went wrong. Please, try again.')
+      });
       alert("The recipe has been created!");
       localStorage.removeItem("formValues");
       setInput({

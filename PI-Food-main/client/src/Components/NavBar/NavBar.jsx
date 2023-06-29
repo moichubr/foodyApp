@@ -20,7 +20,7 @@ const NavBar = () => {
       return;
     }
     dispatch(getRecipeByName(input)).catch((error) => {
-      alert(`Search did not get any result. ${error}`);
+      alert(`Search did not get any result.`);
     });
   };
 

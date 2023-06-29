@@ -9,6 +9,7 @@ export const REGISTER_FILTER = "REGISTER_FILTER";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_ALLDIETS = "GET_ALLDIETS";
 export const CREATE_RECIPE = "CREATE_RECIPE";
+// export const HANDLE_SCORE50 = "HANDLE_SCORE50";
 
 export const getAllRecipes = () => {
   const endpoint = "http://localhost:3001/recipes/";
@@ -119,3 +120,9 @@ export const createRecipe = (form) => {
     }
   }
 }
+
+// export const handleScore50 = () => {
+//     return {
+//       type: HANDLE_SCORE50,
+//     }
+// }

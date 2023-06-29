@@ -8,6 +8,7 @@ import {
   hsOrder,
   dietFilter,
   registerFilter,
+  // handleScore50
 } from "../../Redux/actions";
 import Recipe from "../../Components/Recipe/Recipe";
 import Loading from "../../Components/Loading/Loading";
@@ -52,25 +53,35 @@ const Home = () => {
 
   function alphabeticOrder(event) {
     dispatch(abcOrder(event.target.value));
+    setCurrentPage(1)
   }
 
   function orderbyHS(event) {
     dispatch(hsOrder(event.target.value));
+    setCurrentPage(1);
   }
 
   function filterbyDiet(event) {
     dispatch(dietFilter(event.target.value));
+    setCurrentPage(1);
   }
 
   function filterbyRegister(event) {
     dispatch(registerFilter(event.target.value));
+    setCurrentPage(1);
   }
 
   function handleReset(event) {
     event.preventDefault();
     dispatch(getAllRecipes());
+    setCurrentPage(1);
   }
 
+  // function handleScore(event) {
+  //   event.preventDefault();
+  //   dispatch(handleScore50())
+  //   setCurrentPage(1);
+  // }
 
   useEffect(() => {
     if(recipesLoaded){
@@ -136,6 +147,10 @@ const Home = () => {
           <option value="mas">Healthier</option>
           <option value="menos">Unhealthy</option>
         </select>
+{/* 
+        <span>HealthScore until 50</span>
+        <button onClick={handleScore}>FIND
+        </button> */}
 
         <button className={style.resetbutton} onClick={handleReset}>
           RESET
