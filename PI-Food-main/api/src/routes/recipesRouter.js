@@ -8,13 +8,18 @@ const { Recipe, Diet } = require("../db.js");
 const getRecipeById = require("../controllers/getRecipeById");
 const getRecipeByName = require("../controllers/getRecipeByName");
 const postNewRecipe = require("../controllers/postNewRecipe");
+const deleteRecipe = require("../controllers/deleteRecipe.js");
 
 //100 recetas de la api
 const getApiRecipes = async () => {
   // const apiAuxInfo = (
   //   await axios.get("https://apimocha.com/n.s.recipes/allrecipes")
   // ).data;
-  const apiURL = (await axios.get(`${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)).data
+  const apiURL = (
+    await axios.get(
+      `${URL}complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
+    )
+  ).data;
   const apiInfo = apiURL.results.map((el) => {
     return {
       id: el.id,
@@ -22,9 +27,10 @@ const getApiRecipes = async () => {
       imagen: el.image,
       resumen: el.summary,
       healthScore: el.healthScore,
-      diets: (el.diets?.map((el) => el)).join(", "),
-      instrucciones: el.instructions
-  }});
+      diets: el.diets?.map((el) => el).join(", "),
+      instrucciones: el.instructions,
+    };
+  });
   // console.log('esto es apiinfo', apiInfo)
   return apiInfo;
 };
@@ -78,6 +84,16 @@ recipesRouter.get("/:id", async (req, res) => {
   }
 });
 
+recipesRouter.delete("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const response = await deleteRecipe(id, getAllRecipes);
+    res.status(200).json(response);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 recipesRouter.get("/", async (req, res) => {
   const { nombre } = req.query;
   // console.log(nombre);
@@ -121,7 +137,7 @@ recipesRouter.post("/", validate, async (req, res) => {
       healthScore,
       instrucciones,
       diets,
-      createdInDb,
+      createdInDb
     );
     // console.log('la receta', newRecipe)
     res.status(201).json(newRecipe);

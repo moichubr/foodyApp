@@ -26,12 +26,12 @@ const Form = () => {
   }, [dispatch]);
 
   // cuando se monta el form, obtiene y guarda los input
-  useEffect(() => {
-    let formValues = localStorage.getItem("formValues");
-    if (formValues) {
-      setInput(JSON.parse(formValues));
-    }
-  }, []);
+  // useEffect(() => {
+  //   let formValues = localStorage.getItem("formValues");
+  //   if (formValues) {
+  //     setInput(JSON.parse(formValues));
+  //   }
+  // }, []);
 
   //----maneja la imagen que se quiere cargar
   const handleImage = (event) => {
@@ -105,7 +105,7 @@ const Form = () => {
           alert('Oops! Something went wrong. Please, try again.')
         });
         alert("The recipe has been created!");
-        localStorage.removeItem("formValues");
+        // localStorage.removeItem("formValues");
         setInput({
           nombre: "",
           imagen: "",
@@ -114,16 +114,16 @@ const Form = () => {
           instrucciones: "",
           diets: [],
         });
-      } else {
-        localStorage.setItem("formValues", JSON.stringify(input)); //restablece el form con lo q tiene el estado input
-        window.location.href = "/form"; //redirige al form
+      } else { return
+        // localStorage.setItem("formValues", JSON.stringify(input)); //restablece el form con lo q tiene el estado input
+        // window.location.href = "/form"; //redirige al form
       }
     } else {
       dispatch(createRecipe(input)).catch((error) => {
         alert('Oops! Something went wrong. Please, try again.')
       });
       alert("The recipe has been created!");
-      localStorage.removeItem("formValues");
+      // localStorage.removeItem("formValues");
       setInput({
         nombre: "",
         imagen: "",

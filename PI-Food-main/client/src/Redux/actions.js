@@ -9,6 +9,7 @@ export const REGISTER_FILTER = "REGISTER_FILTER";
 export const CLEAN_DETAIL = "CLEAN_DETAIL";
 export const GET_ALLDIETS = "GET_ALLDIETS";
 export const CREATE_RECIPE = "CREATE_RECIPE";
+export const RECIPE_DELETED = "RECIPE_DELETED";
 // export const HANDLE_SCORE50 = "HANDLE_SCORE50";
 
 export const getAllRecipes = () => {
@@ -31,7 +32,7 @@ export const getDetailsById = (id) => {
   return async (dispatch) => {
     try {
       const response = (await axios.get(endpoint)).data;
-      console.log("lo que me responde:", response);
+      // console.log("lo que me responde:", response);
       return dispatch({
         type: GET_DETAILS,
         payload: response,
@@ -121,6 +122,20 @@ export const createRecipe = (form) => {
   }
 }
 
+export const deleteARecipe = (id) => {
+  const endpoint = `http://localhost:3001/recipes/${id}`
+  return async (dispatch) => {
+    try {
+      const newList= (await axios.delete(endpoint)).data;
+      return dispatch({
+        type: RECIPE_DELETED,
+        payload: newList,
+      })
+    } catch (error) {
+      throw Error(error.message)
+    }
+  }
+}
 // export const handleScore50 = () => {
 //     return {
 //       type: HANDLE_SCORE50,

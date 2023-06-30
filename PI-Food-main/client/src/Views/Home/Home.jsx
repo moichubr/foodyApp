@@ -77,6 +77,7 @@ const Home = () => {
     setCurrentPage(1);
   }
 
+  
   // function handleScore(event) {
   //   event.preventDefault();
   //   dispatch(handleScore50())
@@ -96,6 +97,7 @@ const Home = () => {
     }
     }, [recipesLoaded, dispatch, selectedDiet]);
 
+    
     if(!recipesLoaded){
       return <Loading />
     }

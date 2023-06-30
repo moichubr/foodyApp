@@ -26,7 +26,12 @@ span {
 }
 
 .cardsContainer {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    width: 100vw;
+    justify-content: center;
 }
 
 .resetbutton {
@@ -39,7 +44,11 @@ span {
     height: 30px;
     margin-top: 2px;
     cursor: pointer;
+    transition: transform 0.2s;
 
+}
+.resetbutton:active{
+    transform: translateY(2px);
 }
 
 .button {
@@ -51,5 +60,10 @@ span {
     height: 30px;
     margin-bottom: 20px;
     cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.button:active{
+     transform: translateY(2px);
 }
 

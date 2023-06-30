@@ -9,6 +9,7 @@ import {
   CLEAN_DETAIL,
   GET_ALLDIETS,
   CREATE_RECIPE,
+  RECIPE_DELETED,
   // HANDLE_SCORE50,
 } from "./actions";
 
@@ -97,6 +98,13 @@ const rootReducer = (state = initialState, action) => {
 
       return { ...state, allrecipes: [...filtro], recipeFilter: [...filtro] };
 
+      case RECIPE_DELETED:
+        return{
+          ...state,
+          allrecipes: action.payload,
+          recipesAux: action.payload,
+          recipeFilter: action.payload,
+        }
       // case HANDLE_SCORE50:
       //   const filterScore= state.allrecipes.filter((el) => el.healthScore <= 50);
       //   return {
